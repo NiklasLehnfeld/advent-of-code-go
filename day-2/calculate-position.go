@@ -28,7 +28,8 @@ func main() {
 
 	scanner := bufio.NewScanner(file)
 
-	vertical := 0
+	aim := 0
+	depth := 0
 	horizontal := 0
 
 	for scanner.Scan() {
@@ -59,14 +60,18 @@ func main() {
 		switch direction {
 		case "forward":
 			horizontal += number
+			depth += aim * number
 		case "up":
-			vertical -= number
+			aim -= number
 		case "down":
-			vertical += number
+			aim += number
 		}
 	}
 
-	log.Printf("Vertical: %d", vertical)
-	log.Printf("Horizontal: %d", horizontal)
-	log.Printf("Solution: %d", vertical*horizontal)
+	log.Printf("Aim: %d", aim)
+	log.Printf("Depth: %d", depth)
+	log.Printf("Horizontal: %d\n", horizontal)
+
+	log.Printf("Solution Part 1: %d", aim*horizontal)
+	log.Printf("Solution Part 2: %d", depth*horizontal)
 }
